@@ -7,6 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddScoped<IMoseros, MoserosService>();
+builder.Services.AddScoped<IMosa, MosaService>();
+builder.Services.AddScoped<IRelacion, RelacionService>();
 
 builder.Services.AddControllers();
 
@@ -25,6 +27,17 @@ builder.Services.AddDbContext<MoserosContext>(options =>
 var appSettingsSection = builder.Configuration.GetSection("AppSettings");
 
 #endregion
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "API",
+                      builder =>
+                      {
+                          builder.WithHeaders("*");
+                          builder.WithOrigins("*");
+                          builder.WithMethods("*");
+
+                      });
+});
 
 var app = builder.Build();
 
@@ -38,6 +51,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseCors("API");
 
 app.MapControllers();
 

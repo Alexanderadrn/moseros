@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace moseros.Models;
 
-public partial class Amante
+public partial class Mosa
 {
     public int Id { get; set; }
 

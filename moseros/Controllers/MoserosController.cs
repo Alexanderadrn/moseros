@@ -30,12 +30,12 @@ namespace moseros.Controllers
         {
             return mosero.setMosero(moseros);
         }
-        [HttpPut("putMosero")]
-        public bool putMosero(int  id, MoserosVM moseros)
+        [HttpPost("putMosero")]
+        public bool putMosero( MoserosVM moseros)
         {
-            return mosero.putMoseros(id, moseros);
+            return mosero.putMoseros(moseros);
         }
-        [HttpDelete("deleteMosero")]
+        [HttpPost("deleteMosero")]
         public bool deleteMoseros(int id)
         {
             return mosero.deleteMoseros(id);
